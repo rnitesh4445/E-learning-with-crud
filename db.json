@@ -1,0 +1,357 @@
+{
+  "categories": [
+    {
+      "category_id": 1,
+      "category_name": "java",
+      "id": "6469"
+    },
+    {
+      "category_id": 2,
+      "category_name": "react",
+      "id": "7ecd"
+    },
+    {
+      "category_id": 3,
+      "category_name": "aws",
+      "id": "97ab"
+    }
+  ],
+  "videos": [
+    {
+      "title": "React Hooks Deep Dive",
+      "description": "Understand useState, useEffect, and custom hooks.",
+      "url": "https://www.youtube.com/embed/f687hBjwFcM",
+      "views": 5500,
+      "likes": 290,
+      "dislikes": 0,
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "title": "React Context API Explained",
+      "description": "Manage state globally in React apps.",
+      "url": "https://www.youtube.com/embed/35lXWvCuM8o",
+      "views": 4580,
+      "likes": 220,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "This made context easy!"
+    },
+    {
+      "id": "5",
+      "title": "React useReducer Tutorial",
+      "description": "A complete guide to useReducer hook.",
+      "url": "https://www.youtube.com/embed/kK_Wqx3RnHk",
+      "views": 3700,
+      "likes": 170,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "Great for beginners!"
+    },
+    {
+      "id": "6",
+      "title": "React useRef & useMemo Explained",
+      "description": "Learn how to optimize React performance.",
+      "url": "https://www.youtube.com/embed/t2ypzz6gJm0",
+      "views": 4600,
+      "likes": 240,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "Very helpful examples!"
+    },
+    {
+      "id": "7",
+      "title": "Build a Todo App with React",
+      "description": "Hands-on React project for beginners.",
+      "url": "https://www.youtube.com/embed/E1E08i2UJGI",
+      "views": 8200,
+      "likes": 390,
+      "dislikes": 2,
+      "category_id": 2,
+      "comments": "Loved this mini project!"
+    },
+    {
+      "id": "8",
+      "title": "React Form Handling with Formik",
+      "description": "Learn how to handle forms effectively in React.",
+      "url": "https://www.youtube.com/embed/-t8eOoRsJ7M",
+      "views": 3400,
+      "likes": 150,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "Formik made simple!"
+    },
+    {
+      "id": "9",
+      "title": "React useForm Hook Explained",
+      "description": "Learn react-hook-form library in depth.",
+      "url": "https://www.youtube.com/embed/o3ka5fYysBM",
+      "views": 6000,
+      "likes": 300,
+      "dislikes": 1,
+      "category_id": 2,
+      "comments": "So clean and easy!"
+    },
+    {
+      "id": "10",
+      "title": "React Bootstrap Tutorial",
+      "description": "Style React apps using Bootstrap components.",
+      "url": "https://www.youtube.com/embed/5GcQtLDGXy8",
+      "views": 5000,
+      "likes": 210,
+      "dislikes": 0,
+      "category_id": 2,
+      "comments": "Good for UI beginners!"
+    },
+    {
+      "id": "11",
+      "title": "Java Full Course for Beginners",
+      "description": "Complete Java tutorial for absolute beginners.",
+      "url": "https://www.youtube.com/embed/GoXwIVyNvX0",
+      "views": 20500,
+      "likes": 950,
+      "dislikes": 5,
+      "category_id": 1,
+      "comments": "Super helpful!"
+    },
+    {
+      "id": "12",
+      "title": "Java OOP Concepts Explained",
+      "description": "Learn Object-Oriented Programming in Java.",
+      "url": "https://www.youtube.com/embed/HhM-4P0wQ2s",
+      "views": 8900,
+      "likes": 420,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Very clear!"
+    },
+    {
+      "id": "13",
+      "title": "Java Collections Framework",
+      "description": "Understand ArrayList, HashMap, and more.",
+      "url": "https://www.youtube.com/embed/0sWpjUvbGcQ",
+      "views": 9700,
+      "likes": 470,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Good explanation!"
+    },
+    {
+      "id": "14",
+      "title": "Java Multithreading",
+      "description": "Learn threads and concurrency in Java.",
+      "url": "https://www.youtube.com/embed/t0Cq6tVNRBA",
+      "views": 8200,
+      "likes": 410,
+      "dislikes": 1,
+      "category_id": 1,
+      "comments": "Awesome demo!"
+    },
+    {
+      "id": "15",
+      "title": "Java File Handling",
+      "description": "Work with files in Java step-by-step.",
+      "url": "https://www.youtube.com/embed/5u4G23_OohI",
+      "views": 6800,
+      "likes": 300,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Simple and neat!"
+    },
+    {
+      "id": "16",
+      "title": "Java Exception Handling",
+      "description": "Learn try-catch-finally and custom exceptions.",
+      "url": "https://www.youtube.com/embed/fkL4RkDVM8I",
+      "views": 6400,
+      "likes": 290,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Very useful!"
+    },
+    {
+      "id": "17",
+      "title": "Java String Handling",
+      "description": "Learn String, StringBuffer, and StringBuilder.",
+      "url": "https://www.youtube.com/embed/pp5zEjj5yvo",
+      "views": 7200,
+      "likes": 350,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Nice examples!"
+    },
+    {
+      "id": "18",
+      "title": "Java Lambda Expressions",
+      "description": "Understand lambda and functional interfaces.",
+      "url": "https://www.youtube.com/embed/qVRh8gPId0o",
+      "views": 6200,
+      "likes": 270,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Great content!"
+    },
+    {
+      "id": "19",
+      "title": "Java Streams API Tutorial",
+      "description": "Learn about Java Stream API with examples.",
+      "url": "https://www.youtube.com/embed/t1-YZ6bF-g0",
+      "views": 7100,
+      "likes": 310,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Crystal clear!"
+    },
+    {
+      "id": "20",
+      "title": "Java JDBC Tutorial",
+      "description": "Learn how to connect Java with MySQL database.",
+      "url": "https://www.youtube.com/embed/2k8NleFjG7I",
+      "views": 9600,
+      "likes": 400,
+      "dislikes": 0,
+      "category_id": 1,
+      "comments": "Perfect for beginners!"
+    },
+    {
+      "id": "21",
+      "title": "AWS Full Course 2025",
+      "description": "Complete AWS tutorial covering EC2, S3, Lambda, etc.",
+      "url": "https://www.youtube.com/embed/ulprqHHWlng",
+      "views": 15500,
+      "likes": 600,
+      "dislikes": 1,
+      "category_id": 3,
+      "comments": "Extremely informative!"
+    },
+    {
+      "id": "22",
+      "title": "AWS EC2 Explained",
+      "description": "Learn to launch and manage EC2 instances.",
+      "url": "https://www.youtube.com/embed/TcAC2hxXKDs",
+      "views": 10400,
+      "likes": 450,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Easy to follow!"
+    },
+    {
+      "id": "23",
+      "title": "AWS S3 Bucket Tutorial",
+      "description": "Learn to store and retrieve files using S3.",
+      "url": "https://www.youtube.com/embed/77zP4M5BvJ8",
+      "views": 9400,
+      "likes": 410,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Very useful!"
+    },
+    {
+      "id": "24",
+      "title": "AWS Lambda Hands-On",
+      "description": "Learn serverless computing using AWS Lambda.",
+      "url": "https://www.youtube.com/embed/eOBq__h4OJ4",
+      "views": 8600,
+      "likes": 380,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Best tutorial so far!"
+    },
+    {
+      "id": "25",
+      "title": "AWS IAM Tutorial",
+      "description": "Learn AWS Identity and Access Management.",
+      "url": "https://www.youtube.com/embed/v9eQGyh3yP4",
+      "views": 7200,
+      "likes": 320,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Well explained!"
+    },
+    {
+      "id": "26",
+      "title": "AWS CloudFormation Basics",
+      "description": "Learn AWS Infrastructure as Code using CloudFormation.",
+      "url": "https://www.youtube.com/embed/VaXgmd5Hq5A",
+      "views": 6100,
+      "likes": 290,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Great explanation!"
+    },
+    {
+      "id": "27",
+      "title": "AWS VPC Deep Dive",
+      "description": "Understand Virtual Private Cloud in AWS.",
+      "url": "https://www.youtube.com/embed/YKuRkGkfyaI",
+      "views": 7400,
+      "likes": 330,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Very detailed!"
+    },
+    {
+      "id": "28",
+      "title": "AWS CloudWatch Tutorial",
+      "description": "Learn to monitor AWS services using CloudWatch.",
+      "url": "https://www.youtube.com/embed/FXkF6CfpHoE",
+      "views": 6700,
+      "likes": 310,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Nice monitoring demo!"
+    },
+    {
+      "id": "29",
+      "title": "AWS Load Balancer Explained",
+      "description": "Learn how Elastic Load Balancing works.",
+      "url": "https://www.youtube.com/embed/XvX2UxQbOHw",
+      "views": 8200,
+      "likes": 350,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Super clear!"
+    },
+    {
+      "id": "30",
+      "title": "AWS RDS Database Setup",
+      "description": "Learn to create and connect AWS RDS instances.",
+      "url": "https://www.youtube.com/embed/q3G2UAFRz3I",
+      "views": 9300,
+      "likes": 400,
+      "dislikes": 0,
+      "category_id": 3,
+      "comments": "Very useful demo!"
+    }
+  ],
+  "admin": [
+    {
+      "admin_id": "Niku",
+      "password": "123",
+      "id": "7e4e"
+    }
+  ],
+  "users": [
+    {
+      "id": "u001",
+      "user_id": "kiran_123",
+      "user_name": "Kiran",
+      "password": "kiran@12",
+      "mobile": "+919876543211"
+    },
+    {
+      "id": "u002",
+      "user_id": "niku",
+      "user_name": "Nitesh",
+      "password": "123",
+      "mobile": "+919812345678"
+    },
+    {
+      "id": "729b",
+      "user_id": "nikuuuu",
+      "user_name": "crazzz",
+      "password": "1234567890",
+      "mobile": "1234567890"
+    }
+  ]
+}
