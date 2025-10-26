@@ -110,9 +110,18 @@ function Edit_video() {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-success">
-          Save Changes
-        </button>
+        <div className="d-flex gap-3">
+          <button type="submit" className="btn btn-success">
+            Save Changes
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => navigate("/admin-dashboard")}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
