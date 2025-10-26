@@ -1,34 +1,31 @@
 import React, { useContext } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
 import { useCookies } from "react-cookie";
-
+import { useNavigate, Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 function User_login() {
-  const[cookies,setCookie,removeCookie]=useCookies(['user_id']);
-  console.log(cookies)
-  const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
+  const [cookies, setCookie] = useCookies(["user_id"]);
   const navigate = useNavigate();
+
   const formik = useFormik({
-    initialValues: {
-      user_id: "",
-      password: "",
-    },
-    onSubmit: (details) => {
-      
-      const matchedUser = user.find((acc) => acc.user_id === details.user_id);
+    initialValues: { user_id: "", password: "" },
+    onSubmit: (values) => {
+      const matchedUser = user.find(
+        (u) => u.user_id.toLowerCase() === values.user_id.toLowerCase()
+      );
 
       if (!matchedUser) {
-        alert("Invalid ID");
+        alert("Invalid User ID");
         return;
       }
 
-      if (matchedUser.password === details.password) {
-        setCookie('user_id',matchedUser.user_id)
+      if (matchedUser.password === values.password) {
+        setCookie("user_id", matchedUser.user_id, { path: "/" });
         navigate("/user-dashboard");
       } else {
-        alert("Invalid password");
+        alert("Invalid Password");
       }
     },
   });
@@ -50,8 +47,8 @@ function User_login() {
               id="user_id"
               name="user_id"
               className="form-control"
-              onChange={formik.handleChange}
               value={formik.values.user_id}
+              onChange={formik.handleChange}
             />
           </div>
 
@@ -64,28 +61,20 @@ function User_login() {
               id="password"
               name="password"
               className="form-control"
-              onChange={formik.handleChange}
               value={formik.values.password}
+              onChange={formik.handleChange}
             />
           </div>
 
-          <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-success">
-              Login
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => navigate("/sign-up")}
-            >
-              Sign Up
-            </button>
-          </div>
+          <button type="submit" className="btn btn-success w-100">
+            Login
+          </button>
 
-          <div className="mt-3 text-center">
-            <a href="#" className="text-decoration-none small">
-              Forgot Password?
-            </a>
+          <div className="text-center mt-3">
+            <span>Don't have an account? </span>
+            <Link to="/sign-up" className="btn btn-link">
+              Sign Up
+            </Link>
           </div>
         </form>
       </div>

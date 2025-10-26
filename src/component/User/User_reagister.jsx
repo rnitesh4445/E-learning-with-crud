@@ -1,51 +1,59 @@
-import React, { useContext,useState } from "react";
-import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function User_signup() {
-  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
-   const [userMsg, setUserMsg] = useState("");
-   const [userClass, setUserClass] = useState("");
-  const formik = useFormik({
-    initialValues: {
-      user_id: "",
-      user_name: "",
-      password: "",
-      mobile: "",
-    },
-    onSubmit: (values) => {
-      axios.post('http://localhost:3000/users',values)
-      alert("sign-up  successfully...")
-      navigate('/user-login')
-    },
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    user_id: "",
+    user_name: "",
+    password: "",
+    mobile: "",
   });
-  function verify(e)
-  {
-    for (var i of user ) {
-      if (i.user_id === e.target.value) {
-        setUserMsg("User Id Taken - Try Another");
-        setUserClass("text-danger");
-        break;
-      } else {
-        setUserMsg("User Id Available");
-        setUserClass("text-success");
-      }
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if user_id already exists
+    const exists = user.some(
+      (u) => u.user_id.toLowerCase() === form.user_id.toLowerCase()
+    );
+    if (exists) {
+      alert("User ID already exists!");
+      return;
     }
- 
-  }
+
+    const newUser = {
+      ...form,
+      id: Date.now().toString(), // simple unique id
+    };
+
+    try {
+      await axios.post("http://localhost:3001/users", newUser);
+      setUser((prev) => [...prev, newUser]); // update context immediately
+      alert("Signup successful!");
+      navigate("/user-login"); // redirect to login
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Failed to sign up");
+    }
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div
         className="card shadow-lg p-4"
-        style={{ width: "380px", borderRadius: "15px" }}
+        style={{ width: "400px", borderRadius: "15px" }}
       >
-        <h3 className="text-center mb-4">User Sign Up</h3>
-
-        <form onSubmit={formik.handleSubmit}>
+        <h3 className="text-center mb-4">User Signup</h3>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="user_id" className="form-label">
               User ID
@@ -55,25 +63,23 @@ function User_signup() {
               id="user_id"
               name="user_id"
               className="form-control"
-              onChange={formik.handleChange}
-              value={formik.values.user_id}
-              onKeyUp={verify}
+              value={form.user_id}
+              onChange={handleChange}
               required
             />
-            <p className={userClass}>{userMsg}</p>
           </div>
 
           <div className="mb-3">
             <label htmlFor="user_name" className="form-label">
-              User Name
+              Name
             </label>
             <input
               type="text"
               id="user_name"
               name="user_name"
               className="form-control"
-              onChange={formik.handleChange}
-              value={formik.values.user_name}
+              value={form.user_name}
+              onChange={handleChange}
               required
             />
           </div>
@@ -87,40 +93,30 @@ function User_signup() {
               id="password"
               name="password"
               className="form-control"
-              onChange={formik.handleChange}
-              value={formik.values.password}
+              value={form.password}
+              onChange={handleChange}
               required
             />
           </div>
 
           <div className="mb-3">
             <label htmlFor="mobile" className="form-label">
-              Mobile Number
+              Mobile
             </label>
             <input
               type="text"
               id="mobile"
               name="mobile"
               className="form-control"
-              maxLength="10"
-              onChange={formik.handleChange}
-              value={formik.values.mobile}
+              value={form.mobile}
+              onChange={handleChange}
               required
             />
           </div>
 
-          <div className="d-flex justify-content-between mt-3">
-            <button type="submit" className="btn btn-success px-4">
-              Sign Up
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary px-4"
-              onClick={() => navigate("/")}
-            >
-              Back to Login
-            </button>
-          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Sign Up
+          </button>
         </form>
       </div>
     </div>

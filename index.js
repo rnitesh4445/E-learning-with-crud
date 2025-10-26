@@ -1,16 +1,18 @@
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
-
-const jsonServer = require("json-server");
+import jsonServer from "json-server";
 
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 8080;
 
+// Use middlewares
 server.use(middlewares);
-server.use(router);
 
-server.listen(port, () => {
-  console.log(`JSON Server is running on port ${port}`);
+// Serve JSON routes
+server.use("/api", router); // all API calls prefixed with /api
+
+// Use Render's PORT or fallback
+const PORT = process.env.PORT || 3001;
+
+server.listen(PORT, () => {
+  console.log(`JSON Server running at http://localhost:${PORT}`);
 });

@@ -13,7 +13,7 @@ function DeleteVideo() {
   const handleDelete = async () => {
     if (!selectedVideo) return;
     try {
-      await axios.delete(`http://localhost:3000/videos/${id}`);
+      await axios.delete(`http://localhost:3001/videos/${id}`);
       setVideo(video.filter((v) => v.id !== id));
       navigate("/admin-dashboard");
     } catch (error) {

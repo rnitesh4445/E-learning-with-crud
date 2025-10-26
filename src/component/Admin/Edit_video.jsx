@@ -27,7 +27,7 @@ function Edit_video() {
     },
     onSubmit: async (values) => {
       try {
-        await axios.put(`http://localhost:3000/videos/${id}`, values);
+        await axios.put(`http://localhost:3001/videos/${id}`, values);
         alert("Video updated successfully!");
         navigate("/admin-dashboard");
       } catch (error) {
