@@ -16,8 +16,7 @@ function Admin_login() {
     },
     onSubmit: (values) => {
       const matchedAdmin = admin.find(
-        (a) => a.admin_id.toLowerCase() === values.admin_id.toLowerCase()
-      );
+        (a) => a.admin_id === values.admin_id );
 
       if (!matchedAdmin) {
         alert("❌ Invalid Admin ID");
@@ -25,7 +24,7 @@ function Admin_login() {
       }
 
       if (matchedAdmin.password === values.password) {
-        // ✅ Save cookie for session
+      
         setCookie("admin_id", matchedAdmin.admin_id, { path: "/" });
         alert("✅ Admin Login Successful");
         navigate("/admin-dashboard");

@@ -10,7 +10,7 @@ function Home() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="d-flex flex-wrap gap-4 justify-content-center">
-        {/* Admin Card */}
+    
         <div
           className="card shadow-lg text-center"
           style={{

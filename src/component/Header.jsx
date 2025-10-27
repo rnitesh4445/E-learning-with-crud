@@ -73,13 +73,13 @@ function Header() {
               </button>
             </div>
 
-            {/* Nav Links */}
+            
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center gap-4 fs-5">
               <li className="nav-item">
                 <Link
                   to="/home"
                   className="nav-link text-white fw-semibold"
-                  onClick={() => setFil(video)}
+                
                 >
                   Home
                 </Link>
@@ -91,7 +91,7 @@ function Header() {
                 </Link>
               </li>
 
-              {/* User Dropdown */}
+          
               <li className="nav-item dropdown">
                 <button
                   className="nav-link dropdown-toggle d-flex align-items-center text-white bg-dark border-0"
