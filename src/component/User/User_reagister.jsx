@@ -26,7 +26,7 @@ function User_signup() {
       (u) => u.user_id.toLowerCase() === form.user_id.toLowerCase()
     );
     if (exists) {
-      alert("User ID already exists!");
+      alert("⚠️ User ID already exists!");
       return;
     }
 
@@ -36,13 +36,18 @@ function User_signup() {
     };
 
     try {
-      await axios.post("http://localhost:3001/users", newUser);
-      setUser((prev) => [...prev, newUser]); // update context immediately
-      alert("Signup successful!");
-      navigate("/user-login"); // redirect to login
+      // ✅ Use dynamic API base URL (auto-adjusts in deployment)
+      const baseURL = import.meta.env.VITE_API_URL || window.location.origin;
+
+      await axios.post(`${baseURL}/api/users`, newUser);
+
+      // Update context immediately
+      setUser((prev) => [...prev, newUser]);
+      alert("🎉 Signup successful!");
+      navigate("/user-login");
     } catch (error) {
-      console.error("Signup error:", error);
-      alert("Failed to sign up");
+      console.error("❌ Signup error:", error);
+      alert("Failed to sign up. Please try again later.");
     }
   };
 

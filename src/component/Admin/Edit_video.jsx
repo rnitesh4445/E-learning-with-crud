@@ -10,8 +10,9 @@ function Edit_video() {
   const { video } = useContext(UserContext);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
+  // Find the selected video when the component loads
   useEffect(() => {
-    const vid = video.find((v) => v.id === id);
+    const vid = video.find((v) => String(v.id) === id);
     if (vid) setSelectedVideo(vid);
   }, [id, video]);
 
@@ -26,103 +27,113 @@ function Edit_video() {
       dislikes: selectedVideo?.dislikes || 0,
     },
     onSubmit: async (values) => {
+      if (!values.title.trim() || !values.url.trim()) {
+        alert("Title and URL cannot be empty!");
+        return;
+      }
+
       try {
-        await axios.put(`http://localhost:3001/videos/${id}`, values);
-        alert("Video updated successfully!");
+        await axios.put(`/api/videos/${id}`, values);
+        alert("✅ Video updated successfully!");
         navigate("/admin-dashboard");
       } catch (error) {
-        console.error("Error updating video:", error);
-        alert("Failed to update video.");
+        console.error("❌ Error updating video:", error);
+        alert("Failed to update video. Please try again later.");
       }
     },
   });
 
   if (!selectedVideo)
-    return <p className="text-center mt-4">Loading video...</p>;
+    return <p className="text-center mt-5">Loading video details...</p>;
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Edit Video</h2>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Title</label>
-          <input
-            type="text"
-            className="form-control"
-            name="title"
-            value={formik.values.title}
-            onChange={formik.handleChange}
-          />
-        </div>
+    <div className="container mt-5">
+      <div className="card shadow-lg p-4 rounded-4">
+        <h3 className="mb-4 text-center fw-bold">Edit Video</h3>
 
-        <div className="mb-3">
-          <label className="form-label">Description</label>
-          <textarea
-            className="form-control"
-            name="description"
-            rows="3"
-            value={formik.values.description}
-            onChange={formik.handleChange}
-          ></textarea>
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Video URL</label>
-          <input
-            type="text"
-            className="form-control"
-            name="url"
-            value={formik.values.url}
-            onChange={formik.handleChange}
-          />
-        </div>
-
-        <div className="row">
-          <div className="col-md-4 mb-3">
-            <label className="form-label">Views</label>
+        <form onSubmit={formik.handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Title</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
-              name="views"
-              value={formik.values.views}
+              name="title"
+              value={formik.values.title}
               onChange={formik.handleChange}
+              required
             />
           </div>
-          <div className="col-md-4 mb-3">
-            <label className="form-label">Likes</label>
-            <input
-              type="number"
-              className="form-control"
-              name="likes"
-              value={formik.values.likes}
-              onChange={formik.handleChange}
-            />
-          </div>
-          <div className="col-md-4 mb-3">
-            <label className="form-label">Dislikes</label>
-            <input
-              type="number"
-              className="form-control"
-              name="dislikes"
-              value={formik.values.dislikes}
-              onChange={formik.handleChange}
-            />
-          </div>
-        </div>
 
-        <div className="d-flex gap-3">
-          <button type="submit" className="btn btn-success">
-            Save Changes
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={() => navigate("/admin-dashboard")}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Description</label>
+            <textarea
+              className="form-control"
+              name="description"
+              rows="3"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+            ></textarea>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Video URL</label>
+            <input
+              type="text"
+              className="form-control"
+              name="url"
+              value={formik.values.url}
+              onChange={formik.handleChange}
+              required
+            />
+          </div>
+
+          <div className="row">
+            <div className="col-md-4 mb-3">
+              <label className="form-label fw-semibold">Views</label>
+              <input
+                type="number"
+                className="form-control"
+                name="views"
+                value={formik.values.views}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="col-md-4 mb-3">
+              <label className="form-label fw-semibold">Likes</label>
+              <input
+                type="number"
+                className="form-control"
+                name="likes"
+                value={formik.values.likes}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="col-md-4 mb-3">
+              <label className="form-label fw-semibold">Dislikes</label>
+              <input
+                type="number"
+                className="form-control"
+                name="dislikes"
+                value={formik.values.dislikes}
+                onChange={formik.handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="d-flex gap-3 justify-content-center mt-3">
+            <button type="submit" className="btn btn-success px-4">
+              💾 Save Changes
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary px-4"
+              onClick={() => navigate("/admin-dashboard")}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

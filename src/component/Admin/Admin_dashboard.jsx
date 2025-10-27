@@ -1,26 +1,42 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Admin_dashboard() {
-  const { video } = useContext(UserContext);
+  const { video, setVideo } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // Navigate to Add Video Page
   const handleAddVideo = () => {
-   navigate(`/admin-dashboard/add-video`);
+    navigate("/admin-dashboard/add-video");
   };
 
+  // Navigate to Edit Page
   const handleEdit = (id) => {
     navigate(`/admin-dashboard/edit-video/${id}`);
   };
 
+  // ✅ Handle Delete (API + Context)
+  const handleDelete = async (id) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this video?"
+    );
+    if (!confirm) return;
 
-  const handleDelete = (id) => {
-navigate(`/admin-dashboard/delete-video/${id}`);
+    try {
+      await axios.delete(`/api/videos/${id}`); // relative API path (works on deployment)
+      setVideo((prev) => prev.filter((v) => v.id !== id)); // instant UI update
+      alert("🗑️ Video deleted successfully!");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert("Failed to delete video.");
+    }
   };
 
   return (
     <div className="container mt-4">
+      {/* Header Section */}
       <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
         <h2 className="fw-bold mb-2 mb-md-0">Admin Dashboard</h2>
         <button
@@ -31,6 +47,7 @@ navigate(`/admin-dashboard/delete-video/${id}`);
         </button>
       </div>
 
+      {/* Table Section */}
       <div className="table-responsive">
         <table className="table table-bordered table-hover align-middle">
           <thead className="table-primary text-center">
@@ -42,14 +59,15 @@ navigate(`/admin-dashboard/delete-video/${id}`);
           </thead>
           <tbody>
             {video.length > 0 ? (
-              video.map((item, index) => (
-                <tr key={item.id || index}>
+              video.map((item) => (
+                <tr key={item.id}>
                   <td
                     className="fw-semibold text-center text-truncate"
                     style={{ maxWidth: "150px" }}
                   >
                     {item.title || "Untitled"}
                   </td>
+
                   <td className="text-center">
                     <div
                       className="ratio ratio-16x9 mx-auto"
@@ -58,12 +76,12 @@ navigate(`/admin-dashboard/delete-video/${id}`);
                       <iframe
                         src={item.url}
                         title={item.title}
-                    
                         allowFullScreen
                         className="rounded"
                       ></iframe>
                     </div>
                   </td>
+
                   <td className="text-center">
                     <div className="d-flex justify-content-center flex-wrap gap-2">
                       <button
@@ -72,6 +90,7 @@ navigate(`/admin-dashboard/delete-video/${id}`);
                       >
                         <i className="bi bi-pencil"></i> Edit
                       </button>
+
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => handleDelete(item.id)}
@@ -92,8 +111,6 @@ navigate(`/admin-dashboard/delete-video/${id}`);
           </tbody>
         </table>
       </div>
-
-    
     </div>
   );
 }

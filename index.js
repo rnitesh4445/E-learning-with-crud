@@ -1,18 +1,29 @@
-import jsonServer from "json-server";
+import express from "express";
+import pkg from "json-server"; // 👈 FIXED
+import path from "path";
+import { fileURLToPath } from "url";
 
-const server = jsonServer.create();
-const router = jsonServer.router("db.json");
-const middlewares = jsonServer.defaults();
+// ESM setup
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Use middlewares
-server.use(middlewares);
+const { create, router: jsonServerRouter, defaults } = pkg; // 👈 FIXED
 
-// Serve JSON routes
-server.use("/api", router); // all API calls prefixed with /api
+const app = express();
+const jsonServer = create();
+const router = jsonServerRouter("db.json");
+const middlewares = defaults();
 
-// Use Render's PORT or fallback
-const PORT = process.env.PORT || 3001;
+app.use("/api", middlewares, router);
 
-server.listen(PORT, () => {
-  console.log(`JSON Server running at http://localhost:${PORT}`);
+// Serve frontend from dist
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });

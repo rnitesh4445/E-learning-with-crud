@@ -18,17 +18,6 @@
   ],
   "videos": [
     {
-      "id": "4",
-      "title": "React Context API Explained",
-      "description": "Manage state globally in React apps.",
-      "url": "https://www.youtube.com/embed/35lXWvCuM8o",
-      "views": 4580,
-      "likes": 220,
-      "dislikes": 0,
-      "category_id": 2,
-      "comments": "This made context easy!"
-    },
-    {
       "id": "5",
       "title": "React useReducer Tutorial",
       "description": "A complete guide to useReducer hook.",

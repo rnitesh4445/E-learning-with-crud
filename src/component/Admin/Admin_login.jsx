@@ -14,19 +14,23 @@ function Admin_login() {
       admin_id: "",
       password: "",
     },
-    onSubmit: (sbt) => {
-      const matchedAdmin = admin.find((a) => a.admin_id === sbt.admin_id);
+    onSubmit: (values) => {
+      const matchedAdmin = admin.find(
+        (a) => a.admin_id.toLowerCase() === values.admin_id.toLowerCase()
+      );
 
       if (!matchedAdmin) {
-        alert("Invalid Admin ID");
+        alert("❌ Invalid Admin ID");
         return;
       }
 
-      if (matchedAdmin.password === sbt.password) {
+      if (matchedAdmin.password === values.password) {
+        // ✅ Save cookie for session
         setCookie("admin_id", matchedAdmin.admin_id, { path: "/" });
+        alert("✅ Admin Login Successful");
         navigate("/admin-dashboard");
       } else {
-        alert("Invalid Password");
+        alert("⚠️ Invalid Password");
       }
     },
   });
@@ -38,6 +42,7 @@ function Admin_login() {
         style={{ width: "350px", borderRadius: "15px" }}
       >
         <h3 className="text-center mb-4">Admin Login</h3>
+
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="admin_id" className="form-label">
@@ -48,8 +53,10 @@ function Admin_login() {
               id="admin_id"
               name="admin_id"
               className="form-control"
-              onChange={formik.handleChange}
+              placeholder="Enter Admin ID"
               value={formik.values.admin_id}
+              onChange={formik.handleChange}
+              required
             />
           </div>
 
@@ -62,16 +69,20 @@ function Admin_login() {
               id="password"
               name="password"
               className="form-control"
-              onChange={formik.handleChange}
+              placeholder="Enter Password"
               value={formik.values.password}
+              onChange={formik.handleChange}
+              required
             />
           </div>
 
-          <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-success">
-              Login
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={!formik.values.admin_id || !formik.values.password}
+          >
+            Login
+          </button>
         </form>
       </div>
     </div>

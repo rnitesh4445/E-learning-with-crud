@@ -11,10 +11,13 @@ function UserContextProvider({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Dynamic base URL (for both local & deployed environments)
+        const baseURL = import.meta.env.VITE_API_URL || window.location.origin;
+
         const [videosRes, usersRes, adminRes] = await Promise.all([
-          axios.get("http://localhost:3001/videos"),
-          axios.get("http://localhost:3001/users"),
-          axios.get("http://localhost:3001/admin"),
+          axios.get(`${baseURL}/api/videos`),
+          axios.get(`${baseURL}/api/users`),
+          axios.get(`${baseURL}/api/admin`),
         ]);
 
         setVideo(videosRes.data);
@@ -22,7 +25,7 @@ function UserContextProvider({ children }) {
         setUser(usersRes.data);
         setAdmin(adminRes.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("❌ Error fetching data:", error);
       }
     };
 

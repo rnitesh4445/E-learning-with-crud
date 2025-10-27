@@ -18,66 +18,84 @@ function AddVideo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !url) {
-      alert("Please fill in the title and URL");
+
+    // Basic validation
+    if (!title.trim() || !url.trim()) {
+      alert("⚠️ Please provide both Title and URL.");
       return;
     }
 
+    // Create new video object
     const newVideo = {
       id: Date.now().toString(),
-      title,
-      description,
-      url,
+      title: title.trim(),
+      description: description.trim(),
+      url: url.trim(),
       views: Number(views),
       likes: Number(likes),
       dislikes: Number(dislikes),
       category_id: Number(categoryId),
-      comments,
+      comments: comments.trim(),
     };
 
     try {
-      await axios.post("http://localhost:3000/videos", newVideo);
+      await axios.post("/api/videos", newVideo); // works in deployed build (via proxy)
       setVideo([...video, newVideo]);
+      alert("✅ Video added successfully!");
       navigate("/admin-dashboard");
     } catch (error) {
-      console.error("Error adding video:", error);
+      console.error("❌ Error adding video:", error);
+      alert("Failed to add video. Please try again later.");
     }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card p-4 shadow-sm" style={{ width: "500px" }}>
-        <h3 className="text-center mb-4">Add New Video</h3>
+      <div
+        className="card p-4 shadow-lg rounded-4"
+        style={{ width: "500px", border: "1px solid #ddd" }}
+      >
+        <h3 className="text-center mb-4 fw-bold">Add New Video</h3>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Title</label>
+            <label className="form-label fw-semibold">Title</label>
             <input
               type="text"
               className="form-control"
+              placeholder="Enter video title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </div>
+
           <div className="mb-3">
-            <label className="form-label">URL</label>
+            <label className="form-label fw-semibold">Video URL</label>
             <input
               type="text"
               className="form-control"
+              placeholder="Paste YouTube or video link"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
+              required
             />
           </div>
+
           <div className="mb-3">
-            <label className="form-label">Description</label>
+            <label className="form-label fw-semibold">Description</label>
             <textarea
               className="form-control"
+              rows="3"
+              placeholder="Write a short description..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
+
           <div className="row g-3">
             <div className="col-md-4">
-              <label className="form-label">Views</label>
+              <label className="form-label fw-semibold">Views</label>
               <input
                 type="number"
                 className="form-control"
@@ -86,7 +104,7 @@ function AddVideo() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">Likes</label>
+              <label className="form-label fw-semibold">Likes</label>
               <input
                 type="number"
                 className="form-control"
@@ -95,7 +113,7 @@ function AddVideo() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">Dislikes</label>
+              <label className="form-label fw-semibold">Dislikes</label>
               <input
                 type="number"
                 className="form-control"
@@ -104,8 +122,9 @@ function AddVideo() {
               />
             </div>
           </div>
+
           <div className="mb-3 mt-3">
-            <label className="form-label">Category ID</label>
+            <label className="form-label fw-semibold">Category ID</label>
             <input
               type="number"
               className="form-control"
@@ -113,21 +132,25 @@ function AddVideo() {
               onChange={(e) => setCategoryId(e.target.value)}
             />
           </div>
+
           <div className="mb-3">
-            <label className="form-label">Comments</label>
+            <label className="form-label fw-semibold">Comments</label>
             <textarea
               className="form-control"
+              rows="2"
+              placeholder="Add comments..."
               value={comments}
               onChange={(e) => setComments(e.target.value)}
             ></textarea>
           </div>
-          <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-success">
-              Add Video
+
+          <div className="d-flex justify-content-between mt-4">
+            <button type="submit" className="btn btn-success px-4">
+              ➕ Add Video
             </button>
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-secondary px-4"
               onClick={() => navigate("/admin-dashboard")}
             >
               Cancel
