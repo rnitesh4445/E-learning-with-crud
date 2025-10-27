@@ -21,7 +21,7 @@ function User_signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if user_id already exists
+  
     const exists = user.some(
       (u) => u.user_id.toLowerCase() === form.user_id.toLowerCase()
     );
@@ -32,21 +32,21 @@ function User_signup() {
 
     const newUser = {
       ...form,
-      id: Date.now().toString(), // simple unique id
+      id: Date.now().toString(), 
     };
 
     try {
-      // ✅ Use dynamic API base URL (auto-adjusts in deployment)
+      
       const baseURL = import.meta.env.VITE_API_URL || window.location.origin;
 
       await axios.post(`${baseURL}/api/users`, newUser);
 
-      // Update context immediately
+    
       setUser((prev) => [...prev, newUser]);
       alert("🎉 Signup successful!");
       navigate("/user-login");
     } catch (error) {
-      console.error("❌ Signup error:", error);
+      console.error(" Signup error:", error);
       alert("Failed to sign up. Please try again later.");
     }
   };

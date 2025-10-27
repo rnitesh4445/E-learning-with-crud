@@ -12,7 +12,7 @@ function User_dashboard() {
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
-    // ✅ Redirect unauthenticated users
+    
     if (!cookies["user_id"]) {
       navigate("/");
     } else {
@@ -32,7 +32,7 @@ function User_dashboard() {
 
   return (
     <>
-      <Header />
+      
       <div
         className="container-fluid"
         style={{

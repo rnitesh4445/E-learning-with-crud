@@ -1,7 +1,7 @@
 import React from "react";
 
 function Card({ video }) {
-  // Ensure URL is properly embedded for YouTube/Vimeo/etc.
+  
   const embedUrl = video.url.replace("watch?v=", "embed/");
 
   return (

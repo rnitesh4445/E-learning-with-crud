@@ -10,7 +10,7 @@ function Edit_video() {
   const { video } = useContext(UserContext);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  // Find the selected video when the component loads
+  
   useEffect(() => {
     const vid = video.find((v) => String(v.id) === id);
     if (vid) setSelectedVideo(vid);
@@ -34,10 +34,10 @@ function Edit_video() {
 
       try {
         await axios.put(`/api/videos/${id}`, values);
-        alert("✅ Video updated successfully!");
+        alert("✅Video updated successfully!");
         navigate("/admin-dashboard");
       } catch (error) {
-        console.error("❌ Error updating video:", error);
+        console.error(" Error updating video:", error);
         alert("Failed to update video. Please try again later.");
       }
     },

@@ -11,10 +11,10 @@ function Header() {
   const filterItem = useSearch(query, video);
   const [cookies, , removeCookie] = useCookies(["user_id"]);
 
-  // ✅ Trigger search
+  
   const searchItem = () => setFil(filterItem);
 
-  // ✅ Handle logout (centralized for clarity)
+  
   const handleLogout = () => {
     removeCookie("user_id", { path: "/" });
     navigate("/");
@@ -32,7 +32,7 @@ function Header() {
             className="rounded-circle me-2"
           />
 
-          {/* Mobile Menu Toggle */}
+          
           <button
             className="navbar-toggler"
             type="button"
@@ -45,9 +45,9 @@ function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* Navbar Content */}
+      
           <div className="collapse navbar-collapse" id="navbarContent">
-            {/* Search Box */}
+  
             <div
               className="d-flex mx-auto my-2 my-lg-0 input-group"
               style={{ maxWidth: "350px" }}

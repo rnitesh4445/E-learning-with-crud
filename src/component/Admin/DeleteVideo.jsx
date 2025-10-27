@@ -8,20 +8,20 @@ function DeleteVideo() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Fix: Match ID type safely (URL params are strings)
+  
   const selectedVideo = video.find((v) => String(v.id) === id);
 
-  // Handle delete request
+
   const handleDelete = async () => {
     if (!selectedVideo) return;
     try {
-      // Example API endpoint for backend delete
+    
       await axios.delete(`/api/videos/${id}`);
 
-      // Update state by filtering out the deleted video
+    
       setVideo((prev) => prev.filter((v) => String(v.id) !== id));
 
-      // Navigate back to admin dashboard
+      
       navigate("/admin-dashboard");
     } catch (error) {
       console.error("Delete failed:", error);
@@ -29,12 +29,12 @@ function DeleteVideo() {
     }
   };
 
-  // Cancel and go back
+  
   const handleCancel = () => {
     navigate("/admin-dashboard");
   };
 
-  // If video not found
+
   if (!selectedVideo)
     return <p className="text-center mt-5">Video not found.</p>;
 

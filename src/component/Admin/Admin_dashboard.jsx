@@ -7,17 +7,16 @@ function Admin_dashboard() {
   const { video, setVideo } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Navigate to Add Video Page
   const handleAddVideo = () => {
     navigate("/admin-dashboard/add-video");
   };
 
-  // Navigate to Edit Page
+
   const handleEdit = (id) => {
     navigate(`/admin-dashboard/edit-video/${id}`);
   };
 
-  // ✅ Handle Delete (API + Context)
+
   const handleDelete = async (id) => {
     const confirm = window.confirm(
       "Are you sure you want to delete this video?"
@@ -25,8 +24,8 @@ function Admin_dashboard() {
     if (!confirm) return;
 
     try {
-      await axios.delete(`/api/videos/${id}`); // relative API path (works on deployment)
-      setVideo((prev) => prev.filter((v) => v.id !== id)); // instant UI update
+      await axios.delete(`/api/videos/${id}`); 
+      setVideo((prev) => prev.filter((v) => v.id !== id)); 
       alert("🗑️ Video deleted successfully!");
     } catch (error) {
       console.error("Delete error:", error);

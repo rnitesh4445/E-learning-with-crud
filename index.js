@@ -1,13 +1,13 @@
 import express from "express";
-import pkg from "json-server"; // 👈 FIXED
+import pkg from "json-server"; 
 import path from "path";
 import { fileURLToPath } from "url";
 
-// ESM setup
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const { create, router: jsonServerRouter, defaults } = pkg; // 👈 FIXED
+const { create, router: jsonServerRouter, defaults } = pkg; 
 
 const app = express();
 const jsonServer = create();
@@ -16,7 +16,7 @@ const middlewares = defaults();
 
 app.use("/api", middlewares, router);
 
-// Serve frontend from dist
+
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("*", (req, res) => {

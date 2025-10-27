@@ -19,13 +19,13 @@ function AddVideo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
+    
     if (!title.trim() || !url.trim()) {
       alert("⚠️ Please provide both Title and URL.");
       return;
     }
 
-    // Create new video object
+    
     const newVideo = {
       id: Date.now().toString(),
       title: title.trim(),
@@ -39,12 +39,12 @@ function AddVideo() {
     };
 
     try {
-      await axios.post("/api/videos", newVideo); // works in deployed build (via proxy)
+      await axios.post("/api/videos", newVideo);
       setVideo([...video, newVideo]);
       alert("✅ Video added successfully!");
       navigate("/admin-dashboard");
     } catch (error) {
-      console.error("❌ Error adding video:", error);
+      console.error("Error adding video:", error);
       alert("Failed to add video. Please try again later.");
     }
   };

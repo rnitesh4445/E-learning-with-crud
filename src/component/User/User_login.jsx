@@ -30,12 +30,12 @@ function User_login() {
       if (matchedUser.password === values.password) {
         setCookie("user_id", matchedUser.user_id, {
           path: "/",
-          maxAge: 7 * 24 * 60 * 60, // cookie expires in 7 days
+          maxAge: 7 * 24 * 60 * 60, 
           sameSite: "Lax",
         });
         navigate("/user-dashboard");
       } else {
-        alert("❌ Invalid Password");
+        alert(" Invalid Password");
       }
     },
   });
